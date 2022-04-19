@@ -1,3 +1,5 @@
+require('module-alias/register')
+
 const Koa = require("koa")
 const bodyparser = require("koa-bodyparser")
 const catchError = require('./middlewares/exception')
