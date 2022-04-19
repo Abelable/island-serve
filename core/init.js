@@ -11,9 +11,7 @@ class InitManager {
     const whenLoadModule = router => {
       if (router instanceof Router) InitManager.app.use(router.routes())
     }
-
-    const apiDirectory = `${process.cwd()}/app/api`
-    requireDirectory(module, apiDirectory, {
+    requireDirectory(module, `${process.cwd()}/app/api`, {
       visit: whenLoadModule
     })
   }
