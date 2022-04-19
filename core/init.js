@@ -4,7 +4,12 @@ const requireDirectory = require("require-directory")
 class InitManager {
   static initCore(app) {
     InitManager.app = app
+    InitManager.loadConfig()
     InitManager.initLoadRouters()
+  }
+
+  static loadConfig() {
+    global.config = require(`${process.cwd()}/config/index.js`)
   }
 
   static initLoadRouters() {
