@@ -54,9 +54,9 @@ class NotFound extends HttpException {
 
 module.exports = {
   HttpException,
-  ParameterException,
   Success,
-  NotFound,
+  ParameterException,
   AuthFailed,
-  Forbbiden
+  Forbbiden,
+  NotFound
 }
