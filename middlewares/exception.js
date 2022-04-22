@@ -21,7 +21,7 @@ const catchError = async (ctx, next) => {
     } else {
       ctx.status = 500
       ctx.body = {
-        error_code: 900,
+        error_code: 999,
         msg: '服务器异常',
         request: `${ctx.method} ${ctx.path}`
       }
