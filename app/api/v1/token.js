@@ -1,9 +1,10 @@
-const { loginType } = require("@lib/enum");
+const Router = require("koa-router");
 const { User } = require("@root/app/models/user");
 const { TokenValidator } = require("@root/app/validators");
+const { WXManager } = require("@root/app/services/wx");
 const { ParameterException } = require("@core/http-exception");
 const { generateToken } = require("@core/util");
-const Router = require("koa-router");
+const { loginType } = require("@lib/enum");
 
 const router = new Router({
   prefix: "/v1/token"
