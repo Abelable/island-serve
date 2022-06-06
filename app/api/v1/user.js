@@ -7,7 +7,7 @@ const router = new Router({
   prefix: "/v1/user"
 })
 
-router.post("/register", async (ctx, next) => {
+router.post("/register", async (ctx) => {
   const v = await new RegisterValidator().validate(ctx)
   const { email, password2: password, nickname } = v.get("body")
   await User.create({ email, password, nickname })
