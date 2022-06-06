@@ -1,3 +1,4 @@
+const { Forbbiden } = require('@root/core/http-exception')
 const basicAuth = require('basic-auth')
 const jwt = require('jsonwebtoken')
 
@@ -14,20 +15,20 @@ class Auth {
       const userToken = basicAuth(ctx.req)
 
       let errMsg = 'token不合法'
-      if (!userToken || !userToken.name) throw new global.errs.Forbbiden(errMsg)
+      if (!userToken || !userToken.name) throw new Forbbiden(errMsg)
 
       let decode
       try {
         decode = jwt.verify(userToken.name, global.config.security.secretKey)
       } catch (error) {
         if (error.name === 'TokenExpiredError') errMsg = 'token已过期'
-        throw new global.errs.Forbbiden(errMsg)
+        throw new Forbbiden(errMsg)
       }
 
       const { uid, scope } = decode
       if (scope < this.level) {
         errMsg = '权限不足'
-        throw new global.errs.Forbbiden(errMsg)
+        throw new Forbbiden(errMsg)
       }
 
       ctx.auth = { uid, scope }
