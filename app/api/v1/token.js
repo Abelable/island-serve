@@ -3,6 +3,7 @@ const { User } = require("@root/app/models/user");
 const { TokenValidator } = require("@root/app/validators");
 const { WXManager } = require("@root/app/services/wx");
 const { ParameterException } = require("@core/http-exception");
+const { Auth } = require("@middlewares/auth");
 const { generateToken } = require("@core/util");
 const { loginType } = require("@lib/enum");
 
