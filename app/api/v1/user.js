@@ -8,7 +8,7 @@ const router = new Router({
 })
 
 router.post("/register", async (ctx, next) => {
-  const v = new RegisterValidator().validate(ctx)
+  const v = await new RegisterValidator().validate(ctx)
   const { email, password2: password, nickname } = v.get("body")
   await User.create({ email, password, nickname })
   success("注册成功")
