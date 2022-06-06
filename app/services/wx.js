@@ -7,7 +7,7 @@ const { AuthFailed } = require('@root/core/http-exception')
 
 class WXManager {
   static async codeToToken(code) {
-    const { loginUrl,  appId,  appSecret} = global.config.wx
+    const { loginUrl,  appId, appSecret } = global.config.wx
     const url = util.format(loginUrl, appId, appSecret, code)
     const res = await axios.get(url)
     if (res.status !== 200) throw new AuthFailed("openid获取失败")
