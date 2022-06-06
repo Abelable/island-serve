@@ -11,5 +11,5 @@ router.post("/register", async (ctx) => {
   const v = new RegisterValidator().validate(ctx)
   const { email, password, nickname } = v.get("body")
   await User.create({ email, password, nickname })
-  success()
+  success("注册成功")
 })
