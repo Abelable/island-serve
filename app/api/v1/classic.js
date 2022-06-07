@@ -2,7 +2,7 @@ const Router = require("koa-router")
 
 const router = new Router()
 
-router.get("/v1/classic/latest", async (ctx, next) => {
+router.get("/v1/classic/latest", async (ctx) => {
   ctx.body = { key: "classic" }
 })
 
