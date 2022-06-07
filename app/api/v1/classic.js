@@ -1,8 +1,11 @@
+const { Auth } = require("@root/middlewares/auth")
 const Router = require("koa-router")
 
-const router = new Router()
+const router = new Router({
+  prefix: "/v1/classic"
+})
 
-router.get("/v1/classic/latest", async (ctx) => {
+router.get("/latest", new Auth().middlewave, async (ctx) => {
   ctx.body = { key: "classic" }
 })
 
