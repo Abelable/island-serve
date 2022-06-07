@@ -1,3 +1,4 @@
+const { Book } = require("./book");
 const { Movie, Music, Sentence } = require("./classic");
 
 class Art {
@@ -19,15 +20,19 @@ class Art {
       case 300:
         art = await Sentence.scope(scope).findOne(finder)
         break;
-    
-      default:
+      
+      case 400:
+        art = await Book.scope(scope).findOne(finder)
+        if (!art) {
+          art = await Book.create({ id: art_id })
+        }
         break;
     }
     return art
   }
 
   static async getList(artInfoList) {
-    
+
   }
 }
 
