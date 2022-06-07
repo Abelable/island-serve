@@ -10,6 +10,7 @@ const router = new Router({
 router.get("/latest", new Auth().middlewave, async (ctx) => {
   const flow = await Flow.findOne({ order: [["index", "DESC"]] })
   const art = await Art.getData(flow.art_id, flow.type)
+  art.setDataValue('index', flow.index)
   ctx.body = { art }
 })
 

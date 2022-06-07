@@ -5,9 +5,12 @@ const classicFields = {
   image: Sequelize.STRING,
   content: Sequelize.STRING,
   pubdate: Sequelize.DATEONLY,
-  fav_num: { type: Sequelize.INTEGER, defaultValue: 0 },
+  fav_nums: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
   title: Sequelize.STRING,
-  type: Sequelize.TINYINT
+  type: Sequelize.TINYINT,
 }
 
 class Movie extends Model {}
