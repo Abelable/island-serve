@@ -1,3 +1,8 @@
+const isThisType = (val) => {
+  const arrType = Object.values(this)
+  return arrType.includes(val)
+}
+
 const loginType = {
   USER_MINI_PROGRAM: 100,
   USER_EMAIL: 101,
@@ -6,11 +11,15 @@ const loginType = {
   isThisType
 }
 
-function isThisType(val) {
-  const arrType = Object.values(this)
-  return arrType.includes(val)
+const ArtType = {
+  MOVIE: 100,
+  MUSIC: 200,
+  SENTENCE: 300,
+  BOOK: 400,
+  isThisType
 }
 
 module.exports = {
-  loginType
+  loginType,
+  ArtType
 }
