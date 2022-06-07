@@ -1,9 +1,9 @@
 const { Movie, Music, Sentence } = require("./classic");
 
 class Art {
-  static async getData(artId, type, useScope = true) {
+  static async getData(art_id, type, useScope = true) {
     const finder = {
-      where: { id: artId }
+      where: { id: art_id }
     }
     let art = null
     const scope = useScope ? 'bh' : null
@@ -24,6 +24,10 @@ class Art {
         break;
     }
     return art
+  }
+
+  static async getList(artInfoList) {
+    
   }
 }
 
