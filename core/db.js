@@ -1,4 +1,5 @@
-const { Sequelize } = require('sequelize')
+const { clone, unset } = require('lodash')
+const { Sequelize, Model } = require('sequelize')
 const { dbName, host, port, user, password } = require('@root/config/index').database
 
 const sequelize = new Sequelize(dbName, user, password, {
@@ -27,6 +28,21 @@ const sequelize = new Sequelize(dbName, user, password, {
 sequelize.sync({
   force: false
 })
+
+Model.prototype.toJSON = () => {
+  const data = clone(this.dataValues)
+  unset(data, 'updated_at')
+  unset(data, 'created_at')
+  unset(data, 'deleted_at')
+  for (let key in data) {
+    if (key === 'image') {
+      if (!data[key].startsWith('http')) {
+        data[key] = global.config.host + data[key];
+      }
+    }
+  }
+  return data
+}
 
 module.exports = {
   sequelize
