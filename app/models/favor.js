@@ -1,7 +1,6 @@
 const { Model, Sequelize, Op } = require("sequelize");
 const { sequelize } = require("@core/db");
 const { LikeError, DislikeError, NotFound } = require("@root/core/http-exception");
-const { Art } = require("./art");
 
 class Favor extends Model {
   static async like(art_id, type, uid) {
@@ -10,6 +9,7 @@ class Favor extends Model {
     // 事务
     return sequelize.transaction(async t => {
       await Favor.create({ art_id, type, uid }, { transaction: t })
+      const { Art } = require("@models/art");
       const art = await Art.getData(art_id, type, false)
       await art.increment('fav_nums', { by: 1, transaction: t })
     })
@@ -20,6 +20,7 @@ class Favor extends Model {
     if (!favor) throw new DislikeError()
     return sequelize.transaction(async t => {
       await favor.destroy({ force: true, transaction: t })
+      const { Art } = require("@models/art");
       const art = await Art.getData(art_id, type, false)
       await art.decrement('fav_nums', { by: 1, transaction: t })
     })
