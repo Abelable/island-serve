@@ -7,7 +7,7 @@ class Favor extends Model {
     const favor = await Favor.findOne({ where: { art_id, type, uid } })
     if (favor) throw new LikeError()
     // 事务
-    return sequelize.transaction(async t => {
+    return await sequelize.transaction(async t => {
       await Favor.create({ art_id, type, uid }, { transaction: t })
       const { Art } = require("@models/art");
       const art = await Art.getData(art_id, type, false)
@@ -18,7 +18,7 @@ class Favor extends Model {
   static async dislike(art_id, type, uid) {
     const favor = await Favor.findOne({ where: { art_id, type, uid } })
     if (!favor) throw new DislikeError()
-    return sequelize.transaction(async t => {
+    return await sequelize.transaction(async t => {
       await favor.destroy({ force: true, transaction: t })
       const { Art } = require("@models/art");
       const art = await Art.getData(art_id, type, false)
