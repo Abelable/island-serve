@@ -2,10 +2,10 @@ const { Movie, Music, Sentence } = require("./classic");
 
 class Art {
   static async getData(artId, type, useScope = true) {
-    let art = null
     const finder = {
       where: { id: artId }
     }
+    let art = null
     const scope = useScope ? 'bh' : null
     switch (type) {
       case 100:
