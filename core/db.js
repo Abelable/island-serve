@@ -29,7 +29,7 @@ sequelize.sync({
   force: false
 })
 
-Model.prototype.toJSON = () => {
+Model.prototype.toJSON = function() {
   const data = clone(this.dataValues)
   unset(data, 'updated_at')
   unset(data, 'created_at')
