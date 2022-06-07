@@ -4,14 +4,14 @@ const { sequelize } = require('@core/db')
 const classicFields = {
   image: Sequelize.STRING,
   content: Sequelize.STRING,
-  pubdate: Sequelize.DATEAONLY,
+  pubdate: Sequelize.DATEONLY,
   fav_num: { type: Sequelize.INTEGER, defaultValue: 0 },
   title: Sequelize.STRING,
   type: Sequelize.TINYINT
 }
 
 class Movie extends Model {}
-Model.init(classicFields, { sequelize, tableName: 'movie' })
+Movie.init(classicFields, { sequelize, tableName: 'movie' })
 
 class Sentence extends Model {}
 Sentence.init(classicFields, { sequelize, tableName: 'sentence' })
