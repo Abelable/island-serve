@@ -1,8 +1,25 @@
 const { flatten } = require("lodash");
-const { Book } = require("./book");
+const { NotFound } = require("@root/core/http-exception");
 const { Movie, Music, Sentence } = require("./classic");
+const { Book } = require("./book");
+const { Favor } = require("./favor");
 
 class Art {
+  constructor(art_id, type) {
+    this.art_id = art_id
+    this.type = type
+  }
+
+  async getDetail(uid) {
+    const art = await Art.getData(this.art_id, this.type)
+    if (!art) throw new NotFound()
+    const favor = await Favor.userLikeIt(this.art_id, this.type, uid)
+    return {
+      art, 
+      like_status: favor
+    }
+  }
+
   static async getData(art_id, type, useScope = true) {
     const finder = {
       where: { id: art_id }
