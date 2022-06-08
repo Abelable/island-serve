@@ -34,6 +34,8 @@ const getArt = async (flow, uid) => {
   const art = await Art.getData(flow.art_id, flow.type)
   art.setDataValue('index', flow.index)
   art.setDataValue('like_status', favor)
+  // 排除字段
+  // art.exclude = ['index']
   return art
 }
 
