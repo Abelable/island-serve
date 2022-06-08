@@ -10,8 +10,8 @@ class HotBook extends Model {
       where: {
         art_id: {
           [Op.in]: ids,
-          type: 400
-        }
+        },
+        type: 400
       },
       group: ["art_id"],
       attributes: ["art_id", [Sequelize.fn("COUNT", "*"), "count"]] // ?: 笛卡尔积
