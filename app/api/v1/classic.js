@@ -56,7 +56,7 @@ router.get("/favor", new Auth().middlewave, async (ctx) => {
 })
 
 router.get("/:type/:id", new Auth().middlewave, async (ctx) => {
-  const v = await ClassicValidator().validate(ctx)
+  const v = await new ClassicValidator().validate(ctx)
   const artDetail = await new Art(v.get("path.id"), parseInt(v.get("path.type"))).getDetail(ctx.auth.uid)
   artDetail.art.setDataValue("like_status", artDetail.like_status)
   ctx.body = artDetail.art
