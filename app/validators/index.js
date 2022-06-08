@@ -80,11 +80,9 @@ class SearchValidator extends LinValidator{
     this.q = [
       new Rule('isLength', '搜索关字不能为空', { min: 1, max: 16 })
     ]
-    //分页 start, count 从start开始取,count表示取几条
-    //有可能客户start,count都不传,就是默认default
     this.start = [
       new Rule('isInt', 'start不符合规范', { min: 0, max: 60000 }),
-      new Rule('isOptional', '', 0) // 默认校验isOptional,默认从0条开始查询
+      new Rule('isOptional', '', 0)
     ]
     this.count = [
       new Rule('isInt', 'count不符合规范', { min: 1, max: 20 }),
