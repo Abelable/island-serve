@@ -39,6 +39,7 @@ class Favor extends Model {
       }
     })
     if (!arts) throw new NotFound()
+    const { Art } = require("@models/art");
     return await Art.getList(arts)
   }
 

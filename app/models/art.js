@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { flatten } = require("lodash");
 const { NotFound } = require("@root/core/http-exception");
 const { Movie, Music, Sentence } = require("./classic");
@@ -57,7 +58,7 @@ class Art {
     }
     const arts = []
     for (let key in artInfoObj) {
-      const ids = artInfoObj(key)
+      const ids = artInfoObj[key]
       if (!ids.length) continue
       key = parseInt(key)
       arts.push(await Art._getListByType(ids, key))
