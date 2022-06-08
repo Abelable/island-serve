@@ -44,7 +44,7 @@ router.get("/:book_id/favor", new Auth().middlewave, async (ctx) => {
 
 router.post("/add/short_comment", new Auth().middlewave, async (ctx) => {
   const v = await new AddShortCommentValidator().validate(ctx, { id: "book_id" })
-  await Comment.addComment(v.get("body.book_id"), v.get("book.content"))
+  await Comment.addComment(v.get("body.book_id"), v.get("body.content"))
   success("评论添加成功")
 })
 
