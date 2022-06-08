@@ -11,7 +11,7 @@ const router = new Router({
   prefix: "/v1/book"
 })
 
-router.post("/hot_list", async (ctx) => {
+router.get("/hot_list", async (ctx) => {
   const books = await HotBook.getAll()
   ctx.body = books
 })

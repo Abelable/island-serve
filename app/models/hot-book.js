@@ -4,7 +4,7 @@ const { Favor } = require("./favor");
 
 class HotBook extends Model {
   static async getAll() {
-    const books = await HotBook.getAll({ order: ["index"] })
+    const books = await HotBook.findAll({ order: ["index"] })
     const ids = books.map(book => book.id)
     const favors = await Favor.findAll({
       where: {
@@ -21,7 +21,8 @@ class HotBook extends Model {
   }
 
   static _getEachBookStatus(book, favors) {
-    const count = favors.find(favor => favor.art_id === book.id).get("count")
+    const favor = favors.find(favor => favor.art_id === book.id)
+    const count = favor ? favor.get("count") : 0
     book.setDataValue("fav_nums", count)
     return book
   }
