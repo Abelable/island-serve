@@ -58,4 +58,17 @@ router.get("/:book_id/short_comment", new Auth().middlewave, async (ctx) => {
   }
 })
 
+router.get('/hot_keyword', async ctx => {
+  ctx.body = {
+    hot: [
+      'JavaScript',
+      'Golang',
+      '村上村树',
+      '东野圭吾',
+      'NodeJs',
+      '王小波',
+    ],
+  }
+})
+
 module.exports = router
