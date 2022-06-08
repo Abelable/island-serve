@@ -5,7 +5,7 @@ const { sequelize } = require('@core/db');
 const { Favor } = require('./favor');
 
 class Book extends Model {
-  static async detail(id) {
+  async detail(id) {
     const url = util.format(global.config.yushu.detailUrl, id)
     const res = await axios.get(url)
     return res.data

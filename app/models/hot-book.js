@@ -28,7 +28,7 @@ class HotBook extends Model {
 }
 
 HotBook.init({
-  index: Sequelize.INTEGAR,
+  index: Sequelize.INTEGER,
   image: Sequelize.STRING,
   author: Sequelize.STRING,
   title: Sequelize.STRING,
