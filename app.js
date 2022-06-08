@@ -13,4 +13,4 @@ app.use(static(path.join(__dirname, './static')))
 app.use(catchError)
 InitManager.initCore(app)
 
-app.listen(3001)
+app.listen(3000)
