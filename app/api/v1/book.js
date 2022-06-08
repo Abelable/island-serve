@@ -50,12 +50,8 @@ router.post("/add/short_comment", new Auth().middlewave, async (ctx) => {
 
 router.get("/:book_id/short_comment", new Auth().middlewave, async (ctx) => {
   const v = await new PositiveIntegerValidator().validate(ctx, { id: "book_id" })
-  const book_id = v.get("path.book_id")
-  const bookcomments = await Comment.getBookComments(book_id)
-  ctx.body = {
-    bookcomments,
-    book_id
-  }
+  const comments = await Comment.getBookComments(v.get("path.book_id"))
+  ctx.body = { comments }
 })
 
 router.get('/hot_keyword', async ctx => {
