@@ -1,4 +1,4 @@
-const { clone, unset } = require('lodash')
+const { clone, unset, isArray } = require('lodash')
 const { Sequelize, Model } = require('sequelize')
 const { dbName, host, port, user, password } = require('@root/config/index').database
 
@@ -48,7 +48,7 @@ Model.prototype.toJSON = function() {
       unset(data, value)
     })
   }
-  
+
   return data
 }
 
